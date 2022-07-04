@@ -14,8 +14,7 @@ Escriba el resultado a la carpeta `output` de directorio de trabajo.
         >>> Escriba su respuesta a partir de este punto <<<
 */
 DROP TABLE IF EXISTS data;
-CREATE TABLE data (letra STRING, fecha DATE, valor INT);
-
+CREATE TABLE data (letra STRING, fecha DATE, valor INT)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
 LOAD DATA LOCAL INPATH "data.tsv" OVERWRITE INTO TABLE data;
 

@@ -45,4 +45,5 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 /*
     >>> Escriba su respuesta a partir de este punto <<<
 */
-
+INSERT OVERWRITE LOCAL DIRECTORY 'output' ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+select c2, SORT_ARRAY(COLLECT_LIST(c1)) FROM tbl0 GROUP BY c2;

@@ -44,4 +44,9 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 /*
     >>> Escriba su respuesta a partir de este punto <<<
 */
+DROP TABLE IF EXISTS aux;
+CREATE TABLE aux (fecha DATE,letra STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+INSERT INTO aux (fecha,letra) SELECT c4,caux FROM tbl0 LATERAL VIEW explode(c5) tbl0 AS caux;
 
+INSERT OVERWRITE LOCAL DIRECTORY 'output' ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT YEAR(fecha), letra, count(*) FROM aux GROUP BY YEAR(fecha),letra;
